@@ -1,0 +1,23 @@
+{
+  "name": "koaect_test",
+  "version": "1.0.0",
+  "description": "koa ect npm test",
+  "scripts": {
+    "start": "node-dev --harmony app.js",
+    "test": "node --harmony base_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inuduka-shino/koaect_test.git"
+  },
+  "dependencies": {
+    "ect": "^0.5.9",
+    "koa": "^1.0.0",
+    "koa-mount": "^1.3.0",
+    "koa-route": "^2.4.2",
+    "koa-static": "^1.4.9"
+  },
+  "devDependencies": {
+    "eslint": "^1.6.0"
+  }
+}
