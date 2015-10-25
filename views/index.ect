@@ -1,1 +1,20 @@
-index ect
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8">
+    <title>top page</title>
+</head>
+<body>
+    <h1>top page</h1>
+    <ol>
+    <% for item in @toppageLinks : %>
+        <li>
+            <a href="<%= item.url %>">
+                <%= item.title %>
+            </a>
+            <%= item.comment %>
+        </li>
+    <% end %>
+    </ol>
+</body>
+</html>

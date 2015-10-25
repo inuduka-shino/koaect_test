@@ -4,12 +4,16 @@ module.exports = (function () {
     'use strict';
     var koa = require('koa'),
         mount = require('koa-mount'),
-        ectModule = require('ect'),
-        ectRenderer = ectModule({
+        createStaticDelivery = require('koa-static'),
+        ectModule = require('ect');
+
+    function createEctRenderer(rootPath) {
+        return ectModule({
             watch: true,
-            root: __dirname + '/views',
+            root: rootPath,
             ext : '.ect'
         });
+    }
 
     function genKoaError(info) {
         var name = 'Koa-Error',
@@ -31,7 +35,8 @@ module.exports = (function () {
 
     //error trap
     function setErrorHandling(context) {
-        var app = context.app;
+        var app = context.app,
+            ectRenderer = createEctRenderer(__dirname + '/views');
 
         app.use(function * (next) {
             try {
@@ -86,7 +91,7 @@ module.exports = (function () {
     }
 
 
-    function init() {
+    function create() {
         var app =  koa(),
             context = {
                 app: app
@@ -102,7 +107,9 @@ module.exports = (function () {
     }
 
     return {
-        init: init
+        create: create,
+        createStaticDelivery: createStaticDelivery,
+        createEctRenderer: createEctRenderer
     };
 
 }());
