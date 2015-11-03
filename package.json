@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "koa ect npm test",
   "scripts": {
-    "start": "node-dev --harmony app.js",
-    "test": "node --harmony base_test.js"
+    "start": "node-dev app.js",
+    "test": "node base_test.js",
+    "start_for_node_0.12": "node-dev --harmony app.js"
   },
   "repository": {
     "type": "git",
