@@ -91,6 +91,22 @@
         comment: '/static配下で再マップ'
     });
 
+    // redirect test
+    service.map(
+        '/redirect',
+        function* (next) {
+            // static を上書き
+            this.status = 301;
+            this.redirect('/hello');
+            yield next;
+        }
+    );
+    toppageLinks.push({
+        url: '/redirect',
+        title: 'redirect',
+        comment: 'redirect -> hello'
+    });
+
     // exception test
     service.map(
         '/error_test',
@@ -103,6 +119,8 @@
         title: 'exception',
         comment: '例外発生'
     });
+
+
     toppageLinks.push({
         url: '/no_mapping',
         title: 'nomap',
