@@ -14,7 +14,7 @@
     ectRenderer = koaService.createEctRenderer( __dirname + '/views');
 
     // root
-    service.app.use(function *(next) {
+    service.app.use(function* (next) {
         var url = this.request.url;
         if (url === '/') {
             this.body =  ectRenderer.render('index.ect', {
