@@ -13,6 +13,17 @@
     service = koaService.create();
     ectRenderer = koaService.createEctRenderer( __dirname + '/views');
 
+    // error handling
+    service.app.use(function *(next) {
+        try {
+            yield next;
+        } catch (err) {
+            console.error(err.stack);
+            this.status = 500;
+            this.body = `ERROR!?${err}`;
+        }
+    });
+
     // root
     service.app.use(function* (next) {
         var url = this.request.url;
@@ -110,7 +121,7 @@
     // exception test
     service.map(
         '/error_test',
-        function* () {
+        function* () { //eslint-disable-line require-yield
             throw new Error('sample Error');
         }
     );
