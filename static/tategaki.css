@@ -1,0 +1,10 @@
+body {
+  writing-mode: vertical-rl;
+  font-family: "Noto-Serif-CJK-JP";
+  margin: 20px;
+}
+
+.tur {
+  text-combine-upright: all;
+  color: blue;
+}

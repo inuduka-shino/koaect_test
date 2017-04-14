@@ -1,0 +1,9 @@
+/*
+ * Noto Serif CJK JP https://fonts.google.com/earlyaccess
+ */
+@font-face {
+  font-family: 'Noto-Serif-CJK-JP';
+  font-style: normal;
+  font-weight: 400;
+  src: url(NotoSerifCJKjp-hinted/NotoSerifCJKjp-Regular.otf) format('opentype');
+}

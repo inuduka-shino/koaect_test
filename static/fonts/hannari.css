@@ -1,0 +1,9 @@
+/*
+ * Hannari (Japanese) https://fonts.google.com/earlyaccess
+ */
+@font-face {
+  font-family: 'Hannari';
+  font-style: normal;
+  font-weight: 400;
+  src: url(Hannari-Regular.woff2) format('woff2');
+}

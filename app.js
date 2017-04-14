@@ -138,6 +138,12 @@
         comment: 'マウントなし'
     });
 
+    toppageLinks.push({
+        url: '/static/tategaki.html',
+        title: '縦書き',
+        comment: '縦書きテスト'
+    });
+
     // start http service
     service.start(3001).then(function (srvc) {
         console.log('start http service on ' + srvc.port);
