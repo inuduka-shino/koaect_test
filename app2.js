@@ -16,6 +16,7 @@
 
     app.use(route.get('/', function *() {
         this.body = 'hello world';
+        yield;
     }) );
 
     https.createServer(options, app.callback()).listen(port);
