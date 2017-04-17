@@ -1,17 +1,16 @@
+/*eslint-env node */
 /*eslint no-console: 0*/
 
+const path=require('path'),
+      koaService = require('./koaFrame/koaService');
+
 (function () {
-    'use strict';
-
-    var koaService = require('./koaFrame/koaService'),
-
-        service,
-        ectRenderer,
-        toppageLinks = []; // top page link info for ect render
 
     // init
-    service = koaService.create();
-    ectRenderer = koaService.createEctRenderer( __dirname + '/views');
+    const service = koaService.create(),
+          ectRenderer = koaService.createEctRenderer(path.join(__dirname, '/views'));
+
+    const toppageLinks = []; // top page link info for ect render
 
     // error handling
     service.app.use(function *(next) {
@@ -19,14 +18,16 @@
             yield next;
         } catch (err) {
             console.error(err.stack);
-            this.status = 500;
-            this.body = `ERROR!?${err}`;
+            // this.status = 500;
+            service.app.status = 500;
+            // this.body = `ERROR!?${err}`;
+            service.app.body = `ERROR!?${err}`;
         }
     });
 
     // root
-    service.app.use(function* (next) {
-        var url = this.request.url;
+    service.app.use(function *(next) {
+         var url = this.request.url;
         if (url === '/') {
             this.body =  ectRenderer.render('index.ect', {
                 toppageLinks: toppageLinks
@@ -146,7 +147,23 @@
 
     // start http service
     service.start(3001).then(function (srvc) {
-        console.log('start http service on ' + srvc.port);
+      console.log('start http service on ' + srvc.port);
+      console.log('ip address');
+      const os=require('os');
+      const interfaces = os.networkInterfaces();
+
+      for (let dev in interfaces) {
+        const devDetails = interfaces[dev];
+
+        devDetails.forEach((detail) => {
+          // console.log(devDetail);
+          if (detail.family === 'IPv4') {
+              console.log(detail.address);
+          }
+        });
+      }
+
+
     });
 
 }());
